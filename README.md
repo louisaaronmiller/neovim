@@ -3,7 +3,7 @@
 
 The configuration is contained within a single `init.lua` file rather than being split across a plugin folder.
 
-'git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim' To install directly into nvim config folder
+`git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim` To install directly into nvim config folder
 
 ------------
 
