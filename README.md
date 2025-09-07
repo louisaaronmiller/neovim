@@ -3,6 +3,8 @@
 
 The configuration is contained within a single `init.lua` file rather than being split across a plugin folder.
 
+'git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim' To install directly into nvim config folder
+
 ------------
 
 # Plugins
@@ -43,13 +45,13 @@ Some packages like `Telescope`, download other packages like `Plenary` which are
 `Plenary`
 
 # Prerequisites
-`git` - Necessary for plugins
+`git` - Necessary for plugins/github extraction
 
 `nvim` - Hello :3
 
-`grep` - Necessary for github extraction
+`grep` - Necessary (i think)
 
-A terminal that supports `True Colour` (i.e. `Kitty`, `iTerm2`, etc) - Necessary for grubbox (Theme)
+A terminal that supports `True Colour` (i.e. `Kitty`, `iTerm2`, etc) - Necessary for gruvbox (Theme)
 
 `Node.js` - Necessary for LSP config
 
