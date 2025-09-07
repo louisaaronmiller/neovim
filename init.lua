@@ -53,7 +53,7 @@ require("lazy").setup({
     -- Corrected key mappings
     vim.keymap.set("n", "<leader>fr", function()
       builtin.find_files({ cwd = config_path })
-    end, { desc = "Find files in Neovim config" })
+    end, { desc = "Find files" })
 
     vim.keymap.set("n", "<leader>fg", function()
       builtin.live_grep()
@@ -115,7 +115,8 @@ require("lazy").setup({
         "lua_ls",
         "pyright",
         "ts_ls",
-        "html"
+        "html",
+        "cssls"
       }
     })
   end
@@ -126,16 +127,18 @@ require("lazy").setup({
   config = function()
     local lspconfig = require("lspconfig")
 
-    -- LSP servers
-    lspconfig.lua_ls.setup({})
-    lspconfig.pyright.setup({})
-    lspconfig.ts_ls.setup({})
-    lspconfig.html.setup({}) 
     -- LSP keymaps
     local opts = { noremap = true, silent = true }
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover definition" },opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Get definition" },opts)
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" }, opts)
+
+    -- LSP servers
+    lspconfig.lua_ls.setup({ on_attach = on_attach })       -- LUA
+    lspconfig.pyright.setup({ on_attach = on_attach })      -- PYTHON
+    lspconfig.ts_ls.setup({ on_attach = on_attach })        -- JS
+    lspconfig.html.setup({ on_attach = on_attach })         -- HTML
+    lspconfig.cssls.setup({ on_attach = on_attach })        -- CSS
   end
 }, {
   "goolord/alpha-nvim",
@@ -144,47 +147,87 @@ require("lazy").setup({
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
-    -- Custom DOOM logo
+    -- Centered DOOM logo (spaced both sides)
     dashboard.section.header.val = {
-      "=================     ===============     ===============   ========  ========",
-      "\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //",
-      "||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\\/ . . .||",
-      "|| . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||",
-      "||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||",
-      "|| . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\\ . . . . ||",
-      "||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\\_ . .|. .||",
-      "|| . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\\ `-_/| . ||",
-      "||_-' ||  .|/    || ||    \\|.  || `-_|| ||_-' ||  .|/    || ||   | \\  / |-_.||",
-      "||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \\  / |  `||",
-      "||    `'         || ||         `'    || ||    `'         || ||   | \\  / |   ||",
-      "||            .===' `===.         .==='.`===.         .===' /==. |  \\/  |   ||",
-      "||         .=='   \\_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \\/  |   ||",
-      "||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \\/  |   ||",
-      "||   .=='    _-'          `-__\\._-'         `-_./__-'         `' |. /|  |   ||",
-      "||.=='    _-'                                                     `' |  /==.||",
-      "=='    _-'                                                            \\/   `==",
-      "\\   _-'                                                                `-_   /",
-      " `''                                                                      ``'",
-    }
+  "                                                                                   ",
+  "   =================     ===============     ===============   ========  ========  ",
+  "   \\\\ . . . . . . .\\\\   // . . . . . . .\\\\ // . . . . . . .\\\\  \\\\. . .\\\\// . . //  ",
+  "   ||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\\/ . . .||  ",
+  "   || . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||  ",
+  "   ||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||  ",
+  "   || . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\\ . . . . ||  ",
+  "   ||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\\_ . .|. .||  ",
+  "   || . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\\ `-_/| . ||  ",
+  "   ||_-' ||  .|/    || ||    \\|.  || `-_|| ||_-' ||  .|/    || ||   | \\  / |-_.||  ",
+  "   ||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \\  / |  `||  ",
+  "   ||    `'         || ||         `'    || ||    `'         || ||   | \\  / |   ||  ",
+  "   ||            .===' `===.         .==='.`===.         .===' /==. |  \\/  |   ||  ",
+  "   ||         .=='   \\_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \\/  |   ||  ",
+  "   ||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \\/  |   ||  ",
+  "   ||   .=='    _-'          `-__\\._-'         `-_./__-'         `' |. /|  |   ||  ",
+  "   ||.=='    _-'                                                     `' |  /==.||  ",
+  "   =='    _-'                                                            \\/   `==  ",
+  "   \\   _-'                                                                `-_   /  ",
+  "    `''                                                                      ``'   ",
+  "                                                                                   ",
+}
 
-    -- Dashboard buttons (correct commands)
+    -- Dashboard buttons
     dashboard.section.buttons.val = {
       dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
       dashboard.button("f", "󰉓  Files", ":Neotree toggle<CR>"),
       dashboard.button("r", "󰱼  Find file", ":Telescope find_files<CR>"),
       dashboard.button("t", "  Recent", ":Telescope oldfiles<CR>"),
-      dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
+      dashboard.button("q", "󰗼  Quit NVIM", ":qa<CR>"),
     }
 
     -- Disable folds
     vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
 
-    -- Optional: Set neutral (non-yellow) header color
-    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#928374", bg = "NONE" }) -- Gruvbox gray
+    -- vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#928374", bg = "NONE" }) -- Gruvbox gray
 
+    -- Let Gruvbox handle colors — no override
     alpha.setup(dashboard.opts)
+
   end,
+}, {
+  "nvimtools/none-ls.nvim",
+  config = function()
+    local null_ls = require("null-ls")
+
+    null_ls.setup({
+      sources = {
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort
+
+      }
+    })
+  end
+}, {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+  },
 }
+
+
+
+
+
 
 
 
@@ -210,7 +253,7 @@ vim.keymap.set("n", "<leader>ff", function()
     position = "left",
     dir = vim.fn.stdpath("config"), -- opens ~/.config/nvim
   })
-end, { desc = "Neo-tree: Open Neovim config" })
+end, { desc = "Open Neotree" })
 
 -- This will create a keybind to toggle the file directory (neotree)
 vim.keymap.set("n", "<leader>e", function()
@@ -224,5 +267,17 @@ vim.keymap.set("n", "<leader>hh", function() -- Saves and goes to dash
   vim.cmd("Alpha")       -- Go back to the Alpha dashboard
 end, { desc = "Save and go to dashboard" })
 
+-- Running Python code SPC + r
 vim.keymap.set("n", "<leader>r", ":w<CR>:!python3 %<CR>", { desc = "Run current Python file" })
+
+-- formatting
+vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {desc = "Format"})
+
+
+
+-- Binding for shift + tab -> to go from INSERT mode OR VISUAL mode -> NORMAL mode
+-- vim.keymap.set('i', '<S-Tab>', '<Esc>', { noremap = true })
+-- vim.keymap.set('v', '<S-Tab>', '<Esc>', { noremap = true })
+
+
 
