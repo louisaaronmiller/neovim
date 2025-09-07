@@ -64,7 +64,19 @@ These can all be installed with [Homebrew](https://brew.sh/) using these command
 
 `brew install_ --cask _iterm2_.` - Example installation of iTerm2
 
-`brew install node` 
+`brew install node`
+
+or alternatively using another package manager like [pacman](https://wiki.archlinux.org/title/Pacman) for [Arch linux](https://archlinux.org/)
+
+`pacman -S git`
+
+`pacman -S nvim`
+
+`pacman -S grep`
+
+`pacman -S kitty`
+
+`pacman -S nodejs npm` - 'npm' is node package manager
 
 # Installation MacOS/Linux
  - Download the `init.lua` and `lazy.lock,json` files and store them in `~/.config/nvim/` OR `git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim` to install directly into nvim config folder.
