@@ -58,7 +58,7 @@ These can all be installed with [Homebrew](https://brew.sh/) using these command
 
 `brew install git`
 
-`brew install nvim`
+`brew install neovim`
 
 `brew install grep`
 
@@ -70,7 +70,7 @@ or alternatively using another package manager like [pacman](https://wiki.archli
 
 `pacman -S git`
 
-`pacman -S nvim`
+`pacman -S neovim`
 
 `pacman -S grep`
 
