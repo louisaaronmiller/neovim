@@ -3,8 +3,6 @@
 
 The configuration is contained within a single `init.lua` file rather than being split across a plugin folder.
 
-`git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim` To install directly into nvim config folder
-
 ------------
 
 # Plugins
@@ -69,7 +67,7 @@ These can all be installed with [Homebrew](https://brew.sh/) using these command
 `brew install node` 
 
 # Installation MacOS/Linux
- - Download the `init.lua` file and store it in `~/.config/nvim/`
+ - Download the `init.lua` and `lazy.lock,json` files and store them in `~/.config/nvim/` OR `git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim` to install directly into nvim config folder.
  - After installing, within nvim type `:Mason` and install the following (to your choosing)
      - `pyright`         (Python)
      - `ts_ls`           (JavaScript/TypeScript)
