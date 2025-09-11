@@ -42,6 +42,8 @@ Some packages like `Telescope`, download other packages like `Plenary` which are
 
 `Plenary`
 
+---
+
 # Prerequisites
 `git` - Necessary for plugins/github extraction
 
@@ -78,6 +80,10 @@ or alternatively using another package manager like [pacman](https://wiki.archli
 
 `pacman -S nodejs npm` - 'npm' is node package manager
 
+Something that isn't necessary but is recommended for icons is a [nerdfont](https://www.nerdfonts.com/)
+
+---
+
 # Installation MacOS/Linux
  - Download the `init.lua` and `lazy.lock,json` files and store them in `~/.config/nvim/` OR `git clone https://github.com/louisaaronmiller/neovim.git ~/.config/nvim` to install directly into nvim config folder.
  - After installing, within nvim type `:Mason` and install the following (to your choosing)
@@ -91,6 +97,8 @@ or alternatively using another package manager like [pacman](https://wiki.archli
      - `stylua`          **REQUIRED**
    
 none_ls requires stylua installed in mason
+
+---
 
 # Things in the future that are being added/fixed
 - Rainbow parenthesis
