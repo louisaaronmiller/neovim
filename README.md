@@ -55,8 +55,7 @@ A terminal that supports `True Colour` (i.e. `Kitty`, `iTerm2`, etc) - Necessary
 
 `Node.js` - Necessary for LSP config
 
-##
-These can all be installed with [Homebrew](https://brew.sh/) using these commands:
+### These can all be installed with [Homebrew](https://brew.sh/) using these commands:
 
 `brew install git`
 
@@ -68,7 +67,7 @@ These can all be installed with [Homebrew](https://brew.sh/) using these command
 
 `brew install node`
 
-or alternatively using another package manager like [pacman](https://wiki.archlinux.org/title/Pacman) for [Arch linux](https://archlinux.org/)
+### or alternatively using another package manager like [pacman](https://wiki.archlinux.org/title/Pacman) for [Arch linux](https://archlinux.org/)
 
 `pacman -S git`
 
@@ -80,7 +79,11 @@ or alternatively using another package manager like [pacman](https://wiki.archli
 
 `pacman -S nodejs npm` - 'npm' is node package manager
 
-Something that isn't necessary but is recommended for icons is a [nerdfont](https://www.nerdfonts.com/)
+### Recommended packages/plugins/stuff that aren't necessarily required:
+
+[`nerdfont`](https://www.nerdfonts.com/) - Used for icons in the dashboard
+
+`xclip` - For nvim yanks to be placed in the computers clipboard (for linux) `pacman -S xclip`
 
 ---
 
