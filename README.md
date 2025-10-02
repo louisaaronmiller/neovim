@@ -92,14 +92,13 @@ A terminal that supports `True Colour` (i.e. `Kitty`, `iTerm2`, etc) - Necessary
  - After installing, within nvim type `:Mason` and install the following (to your choosing)
      - `pyright`         (Python)
      - `ts_ls`           (JavaScript/TypeScript)
-     - `black`           (Python)
      - `prettier`        (JavaScript/TypeScript)
      - `css-lsp`         (CSS)
      - `html-lsp`        (HTML)
   The above will currently install upon importing the `init.lua` file
      - `isort`           (Python) **REQUIRED** (for Python)
      - `stylua`          **REQUIRED**
-   
+     - `black`           (Python)
 none_ls requires stylua installed in mason
 
 ---
