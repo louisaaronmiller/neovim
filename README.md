@@ -98,7 +98,7 @@ A terminal that supports `True Colour` (i.e. `Kitty`, `iTerm2`, etc) - Necessary
   The above will currently install upon importing the `init.lua` file
      - `isort`           (Python) **REQUIRED** (for Python)
      - `stylua`          **REQUIRED**
-     - `black`           (Python)
+     - `black`           (Python) **REQUIRED** (for Python)
 none_ls requires stylua installed in mason
 
 ---
