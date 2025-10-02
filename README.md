@@ -96,7 +96,8 @@ A terminal that supports `True Colour` (i.e. `Kitty`, `iTerm2`, etc) - Necessary
      - `prettier`        (JavaScript/TypeScript)
      - `css-lsp`         (CSS)
      - `html-lsp`        (HTML)
-     - `isort`           (Python)  
+  The above will currently install upon importing the `init.lua` file
+     - `isort`           (Python) **REQUIRED** (for Python)
      - `stylua`          **REQUIRED**
    
 none_ls requires stylua installed in mason
