@@ -106,6 +106,10 @@ none_ls requires stylua installed in mason
 # Setup
 Opening up `neotree` with either `<leader>ff` or `<leader>e` opens `neotree` in `~/.config/nvim` directory. You can change this by altering the directory to your desired path or removing it all together. For example `dir = vim.fn.expand("~/Documents/Code")` or `dir = "/home/username/Documents/Code"` Changing the `<leader>ff` keybind to this path will change neotree for that specific keybind, upon use it will change the dashboard to permenantly (for that session) go to that directory as well. If you are starting a new session in nvim and haven't opened up neotree, using the dashboard `f` find file, will show all files on your computer. Not changing `<leader>e` will allow you to still access config files.
 
+---
+# Keybinds
+Most keybinds will show up in which key, which comes up when you press the leader key (in this config its set up as `space`). However, there are some keybinds that don't show up, for example:
+- `Shift` + `k` = displays a detailed description of a function - a tooltip, hint, info.
 
 ---
 
@@ -115,7 +119,6 @@ Opening up `neotree` with either `<leader>ff` or `<leader>e` opens `neotree` in 
 - Line collapsing
 - Surround (plugin)
 - Menu (plugin)
-- tmux
 - things being binded twice (shift + k, displaying two sets of info) (FIXING)
 - terminal (plugin)
 
